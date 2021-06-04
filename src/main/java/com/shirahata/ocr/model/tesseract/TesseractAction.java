@@ -1,4 +1,4 @@
-package com.server.ocr;
+package com.shirahata.ocr.model.tesseract;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

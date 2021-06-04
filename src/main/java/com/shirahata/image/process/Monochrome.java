@@ -1,4 +1,4 @@
-package com.server.imageProcessing;
+package com.shirahata.image.process;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
