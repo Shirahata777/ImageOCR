@@ -6,60 +6,54 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.bytedeco.javacv.Java2DFrameConverter;
+import org.bytedeco.javacv.OpenCVFrameConverter;
+import org.bytedeco.opencv.opencv_core.Mat;
+import org.bytedeco.opencv.opencv_core.Size;
+import static org.bytedeco.opencv.global.opencv_core.NORM_MINMAX;
+import static org.bytedeco.opencv.global.opencv_core.normalize;
+import static org.bytedeco.opencv.global.opencv_imgcodecs.imwrite;
+import static org.bytedeco.opencv.global.opencv_imgproc.blur;
+
+import static org.bytedeco.opencv.global.opencv_core.CV_8UC1;
+import static org.bytedeco.opencv.global.opencv_imgproc.COLOR_BGR2GRAY;
+import static org.bytedeco.opencv.global.opencv_imgproc.cvtColor;
+import static org.bytedeco.opencv.global.opencv_imgproc.THRESH_BINARY;
+import static org.bytedeco.opencv.global.opencv_imgproc.threshold;
+
+
 public class Monochrome {
 
-	public void image() throws IOException {
-		// イメージをBufferedImageへ読みこむ。
-		// 以下イメージの操作はBufferedImageを利用して行う。
-		BufferedImage readImage = ImageIO.read(new File("C:\\Koala.jpg"));
+	@SuppressWarnings("resource")
+	public static void monochrome(String url) throws IOException {
+		BufferedImage bi = ImageIO.read(new File(url));
+		OpenCVFrameConverter.ToIplImage cv = new OpenCVFrameConverter.ToIplImage();
+		Java2DFrameConverter jcv = new Java2DFrameConverter();
 
-		// モノクロに変換
-		// 元イメージの幅、高さを取得。
-		int w = readImage.getWidth();
-		int h = readImage.getHeight();
-
-		// 変換結果を書き込むBufferedImageを作成する。
-		// サイズは元イメージと同じ幅、高さとする。
-		BufferedImage writeImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-
-		// 1ピクセルづつ処理を行う
-		for (int y = 0; y < h; y++) {
-			for (int x = 0; x < w; x++) {
-				// ピクセル値を取得
-				int c = readImage.getRGB(x, y);
-				// 0.299や0.587といった値はモノクロ化の定数値
-				int mono = (int) (0.299 * r(c) + 0.587 * g(c) + 0.114 * b(c));
-				// モノクロ化したピクセル値をint値に変換
-				int rgb = (a(c) << 24) + (mono << 16) + (mono << 8) + mono;
-				writeImage.setRGB(x, y, rgb);
-			}
-		}
-		// イメージをファイルに出力する
-		ImageIO.write(writeImage, "png", new File("C:\\mono.png"));
+		Mat mat = cv.convertToMat(jcv.convert(bi));
+		Mat gray = copyRegion(toGray(mat), 1000, 800, 600, 400);
+		Mat blurred = new Mat(gray.size(), gray.type());
+		blur(gray, blurred, new Size(3, 3));
+		Mat normalized = new Mat(blurred.size(), blurred.type());
+		Mat result = new Mat(normalized.size(), normalized.type());
+        threshold(normalized, result, 50, 255, THRESH_BINARY);
+        imwrite(new File(url).getAbsolutePath(), result);
 	}
 
-	public static int a(int c) {
-		return c >>> 24;
+	public static Mat copyRegion(Mat input, int x, int y, int width, int height) {
+		Mat cropped = new Mat(new Size(width, height), input.type());
+		int dtop = y;
+		int dbottom = input.rows() - dtop - cropped.rows();
+		int dleft = x;
+		int dright = input.cols() - dleft - cropped.cols();
+		input.adjustROI(-dtop, -dbottom, -dleft, -dright).copyTo(cropped);
+		return cropped;
 	}
 
-	public static int r(int c) {
-		return c >> 16 & 0xff;
-	}
-
-	public static int g(int c) {
-		return c >> 8 & 0xff;
-	}
-
-	public static int b(int c) {
-		return c & 0xff;
-	}
-
-	public static int rgb(int r, int g, int b) {
-		return 0xff000000 | r << 16 | g << 8 | b;
-	}
-
-	public static int argb(int a, int r, int g, int b) {
-		return a << 24 | r << 16 | g << 8 | b;
+	public static Mat toGray(Mat color) {
+		Mat grey = new Mat(color.size(), CV_8UC1);
+		cvtColor(color, grey, COLOR_BGR2GRAY);
+		return grey;
 	}
 
 }

@@ -6,13 +6,17 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.shirahata.image.process.Monochrome;
+
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
+
 public class TesseractAction {
 
 	public String action() throws TesseractException, IOException {
+		Monochrome.monochrome("src/main/resources/static/images/test.jpeg");
 		BufferedImage img = imageLoad("src/main/resources/static/images/test.jpeg");
 		return tesseractModelSetting("src/main/resources/static/model", "jpn").doOCR(img);
 	}
