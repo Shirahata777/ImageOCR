@@ -19,18 +19,18 @@ import net.sourceforge.tess4j.TesseractException;
 @Controller
 @EnableAutoConfiguration
 public class MainOCR {
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model)  throws IOException, TesseractException {
-		TesseractAction tesseract = new TesseractAction();
-		
-		String ocrString = tesseract.action();
-        model.addAttribute("message", ocrString);
 
-        return "index";
-    }
-    
-    public static void main(String[] args) {
-        SpringApplication.run(MainOCR.class, args);
-    }
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index(Model model) throws IOException, TesseractException {
+		TesseractAction tesseract = new TesseractAction();
+
+		String ocrString = tesseract.action();
+		model.addAttribute("message", ocrString);
+
+		return "index";
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(MainOCR.class, args);
+	}
 }
