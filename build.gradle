@@ -27,7 +27,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
 	implementation group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.5.4'
 
-    implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.5'
+	implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.5'
+	// https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv
+	implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '4.0.1-1.4.4'
 	
 }
 

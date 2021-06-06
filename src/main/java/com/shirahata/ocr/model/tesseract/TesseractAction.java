@@ -3,6 +3,7 @@ package com.shirahata.ocr.model.tesseract;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 
@@ -16,7 +17,15 @@ import net.sourceforge.tess4j.TesseractException;
 public class TesseractAction {
 
 	public String action() throws TesseractException, IOException {
-		Monochrome.monochrome("src/main/resources/static/images/test.jpeg");
+		try {
+			Monochrome.monochrome("src/main/resources/static/images/test.jpeg");
+		} catch (URISyntaxException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		BufferedImage img = imageLoad("src/main/resources/static/images/test.jpeg");
 		return tesseractModelSetting("src/main/resources/static/model", "jpn").doOCR(img);
 	}
