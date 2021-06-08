@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.bytedeco.javacpp.Loader;
+import org.bytedeco.opencv.opencv_java;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -19,6 +21,8 @@ public class Monochrome {
 //		Mat source = opencv_imgcodecs.imread(TEMP_DIR.toString());
 //		opencv_imgproc.cvtColor(source, source, opencv_imgproc.COLOR_BGR2HSV);
 //		opencv_imgcodecs.imwrite(filepath, source);
+//		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		Loader.load(opencv_java.class);
 		Mat image = Imgcodecs.imread("src/main/resources/static/images/test.jpeg");
 	    Core.transpose(image, image);
 	    Core.flip(image, image, 1);

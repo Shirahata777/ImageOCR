@@ -18,7 +18,7 @@ public class TesseractAction {
 
 	public String action() throws TesseractException, IOException {
 		try {
-			Monochrome.monochrome("src/main/resources/static/images/test.jpeg");
+			Monochrome.monochrome("src/main/resources/static/images/test_output.jpg");
 		} catch (URISyntaxException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

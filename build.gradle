@@ -30,6 +30,9 @@ dependencies {
 	implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.5'
 	// https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv
 	implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '4.0.1-1.4.4'
+	// https://mvnrepository.com/artifact/nu.pattern/opencv
+	// implementation group: 'nu.pattern', name: 'opencv', version: '2.4.9-7'
+	
 	
 }
 

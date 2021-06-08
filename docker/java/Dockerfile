@@ -5,7 +5,7 @@ RUN apt-get update
 
 RUN export LC_ALL=C
 
-ARG OPENCV_VERSION='4.4.0'
+ARG OPENCV_VERSION='4.0.1'
 
 # Build tools
 RUN apt update && \
@@ -87,4 +87,4 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
     make install
 
 
-WORKDIR /IamgeOCR
+WORKDIR /imageOCR
