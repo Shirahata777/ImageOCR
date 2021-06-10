@@ -1,4 +1,4 @@
-package com.shirahata;
+package shirahata777;
 
 import java.io.IOException;
 
@@ -9,9 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.shirahata.ocr.model.tesseract.TesseractAction;
-
 import net.sourceforge.tess4j.TesseractException;
+import shirahata777.ocr.model.tesseract.TesseractAction;
 
 @Controller
 @EnableAutoConfiguration
