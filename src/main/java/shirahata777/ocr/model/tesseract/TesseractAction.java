@@ -17,15 +17,13 @@ public class TesseractAction {
 
 	public String action() throws TesseractException, IOException {
 		try {
-			Monochrome.monochrome("src/main/resources/static/images/test_output.jpg");
+			Monochrome.monochrome("src/main/resources/static/images/", "test.jpeg");
 		} catch (URISyntaxException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		BufferedImage img = imageLoad("src/main/resources/static/images/test.jpeg");
+		BufferedImage img = imageLoad("src/main/resources/static/images/test_output.jpg");
 		return tesseractModelSetting("src/main/resources/static/model", "jpn").doOCR(img);
 	}
 
