@@ -1,4 +1,4 @@
-package shirahata777;
+package com.github.shirahata777.controller;
 
 import java.io.IOException;
 
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.sourceforge.tess4j.TesseractException;
-import shirahata777.ocr.model.tesseract.TesseractAction;
+import com.github.shirahata777.actions.tesseract.TesseractAction;
 
 @Controller
 @EnableAutoConfiguration
-public class MainOCR {
+public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) throws IOException, TesseractException {
@@ -27,6 +27,6 @@ public class MainOCR {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(MainOCR.class, args);
+		SpringApplication.run(MainController.class, args);
 	}
 }

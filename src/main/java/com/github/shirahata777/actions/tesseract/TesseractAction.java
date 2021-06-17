@@ -1,4 +1,4 @@
-package shirahata777.ocr.model.tesseract;
+package com.github.shirahata777.actions.tesseract;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,10 +7,11 @@ import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 
+import com.github.shirahata777.actions.image.opencv.monochrome.Monochrome;
+
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
-import shirahata777.image.process.Monochrome;
 
 
 public class TesseractAction {

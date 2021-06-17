@@ -1,4 +1,4 @@
-package shirahata777;
+package com.github.shirahata777;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

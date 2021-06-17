@@ -1,4 +1,4 @@
-package shirahata777.image.process;
+package com.github.shirahata777.actions.image.opencv.monochrome;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
