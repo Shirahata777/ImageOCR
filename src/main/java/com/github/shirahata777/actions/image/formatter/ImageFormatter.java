@@ -1,24 +1,29 @@
-package com.github.shirahata777.actions.image.opencv.monochrome;
+package com.github.shirahata777.actions.image.formatter;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ResourceBundle;
 
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.opencv.opencv_java;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import com.github.shirahata777.actions.image.manager.ImageManager;
 
-public class Monochrome {
-	public static void monochrome(String fileDirPath, String imageName) throws URISyntaxException, IOException {
+public class ImageFormatter {
+
+	public static void monochrome(String fileDirPath, String imageName) {
 		Loader.load(opencv_java.class);
-		Mat mat = Imgcodecs.imread(fileDirPath + imageName);
+		
+		Mat mat = ImageManager.loadMatImage(fileDirPath, imageName);
+		
 		Mat gray = new Mat();
 		Imgproc.cvtColor(mat, gray, Imgproc.COLOR_RGB2GRAY); // 画像のグレースケール変換
 		Mat s16 = new Mat();
 		gray.convertTo(s16, CvType.CV_16S);
-		Imgcodecs.imwrite("src/main/resources/static/images/test_output.jpg", s16);
+		
+		ImageManager.saveImage(s16);
 	}
+	
 }

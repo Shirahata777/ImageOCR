@@ -2,7 +2,6 @@ package com.github.shirahata777.controller;
 
 import java.io.IOException;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +23,5 @@ public class MainController {
 		model.addAttribute("message", ocrString);
 
 		return "index";
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(MainController.class, args);
 	}
 }
