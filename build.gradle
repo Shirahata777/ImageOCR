@@ -33,7 +33,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/nu.pattern/opencv
 	// implementation group: 'nu.pattern', name: 'opencv', version: '2.4.9-7'
 	
-	
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client
+	implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.5.1'
 }
 
 test {
