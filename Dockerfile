@@ -3,7 +3,7 @@ FROM openjdk:8
 RUN apt-get update
 
 
-RUN export LC_ALL=C
+ENV LC_ALL C
 
 ARG OPENCV_VERSION='4.0.1'
 
